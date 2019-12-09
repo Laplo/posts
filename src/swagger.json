@@ -1,0 +1,399 @@
+{
+  "swagger": "2.0",
+  "basePath": "/v2",
+  "info": {
+    "version": "1.0.0",
+    "title": "Posts-TypeScript-NodeJS-CRUD-REST-API",
+    "description": "A micro service written in NodeJs to handle posts of an application"
+  },
+  "schemes": ["http"],
+  "tags": [
+    {
+      "name": "Posts",
+      "description": "API for posts in the system"
+    },
+    {
+      "name": "Reactions",
+      "description": "API for reactions in the system"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/reactions": {
+      "post": {
+        "tags": [
+          "Reactions"
+        ],
+        "summary": "Post a reaction in system",
+        "parameters": [
+          {
+            "in": "body",
+            "description": "Reaction Object",
+            "required": true,
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Reaction"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/reactions/{id}": {
+      "delete": {
+        "summary": "Delete reaction with given ID",
+        "tags": [
+          "Reactions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Delete Reaction with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "404": {
+            "description": "Failed. Reaction not found."
+          }
+        }
+      }
+    },
+    "/reactions/post/{id}": {
+      "get": {
+        "tags": [
+          "Reactions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Get Reactions of post with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "summary": "Get all Reactions of post in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Reactions"
+            }
+          },
+          "404": {
+            "description": "Failed. Post not found."
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get all posts in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Post a post in system",
+        "parameters": [
+          {
+            "in": "body",
+            "description": "Post Object",
+            "required": true,
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Update a post in system",
+        "parameters": [
+          {
+            "in": "body",
+            "description": "Post Object",
+            "required": true,
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad put data."
+          }
+        }
+      }
+    },
+    "/posts/timeline/{id}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Get Posts for post with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "summary": "Get all Posts for user in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          },
+          "404": {
+            "description": "Failed. User not found."
+          }
+        }
+      }
+    },
+    "/posts/user/{id}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Get Posts of user with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "summary": "Get all Posts of user in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          },
+          "404": {
+            "description": "Failed. User not found."
+          }
+        }
+      }
+    },
+    "/posts/comments/{id}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Get Comments from post with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "summary": "Get all Comments of Post in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          },
+          "404": {
+            "description": "Failed. Post not found."
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "delete": {
+        "summary": "Delete post with given ID",
+        "tags": [
+          "Posts"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Delete Post with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "404": {
+            "description": "Failed. Post not found."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "Post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "content": {
+          "type": "string"
+        },
+        "userId": {
+          "$ref": "#/definitions/id"
+        },
+        "postId": {
+          "$ref": "#/definitions/id"
+        },
+        "parent": {
+          "type": "object",
+          "$ref": "#/definitions/Post"
+        },
+        "comments": {
+          "type": "array",
+          "$ref": "#/definitions/Posts"
+        },
+        "reactions": {
+          "type": "array",
+          "$ref": "#/definitions/Reactions"
+        }
+      },
+      "xml": {
+        "name": "Post"
+      }
+    },
+    "Posts": {
+      "type": "object",
+      "properties": {
+        "posts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Post"
+          }
+        }
+      }
+    },
+    "Reaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "userId": {
+          "$ref": "#/definitions/id"
+        },
+        "postId": {
+          "$ref": "#/definitions/id"
+        },
+        "reactionType": {
+          "type": "string",
+          "enum": [
+            "LIKE", "RETWEET"
+          ]
+        }
+      },
+      "xml": {
+        "name": "Reaction"
+      }
+    },
+    "Reactions": {
+      "type": "object",
+      "properties": {
+        "reactions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Reaction"
+          }
+        }
+      }
+    }
+  }
+}
