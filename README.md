@@ -1,5 +1,5 @@
-Créer un dossier env à la racine
-Pour le développement, renseigner les variables suivantes :
+Create an env folder at the root
+For development, please fill the following variables :
 
 # Environment
 NODE_ENV=
